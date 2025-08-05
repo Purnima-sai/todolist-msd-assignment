@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: blueviolet;
+      margin-top: 50px;
+    }
+    input[type="text"] {
+      padding: 8px;
+      width: 200px;
+      background-color: rgb(203, 209, 151);
+    }
+    button {
+      padding: 8px 12px;
+      margin-left: 5px;
+      background-color: rgb(110, 231, 40);
+      color: black;
+      cursor: pointer;
+    }
+    ol {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 20px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #faff72;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    li.done label {
+      text-decoration: line-through;
+      color: rgb(107, 238, 98);
+    }
+  </style>
+</head>
+<body>
+  <h1>To-Do List with Checkboxes</h1>
+  <input type="text" id="taskInput" placeholder="Add a new task">
+  <button onclick="addTask()">Add</button>
+  <ol id="taskList"></ol>
+  <script>
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const taskText = input.value.trim();
+      if (taskText !== "") {
+        const li = document.createElement("li");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        const label = document.createElement("label");
+        label.textContent = taskText;
+        checkbox.addEventListener('change', () => {
+          li.classList.toggle("done");});
+        li.appendChild(checkbox);
+        li.appendChild(label);
+        document.getElementById("taskList").appendChild(li);
+        input.value = "";
+      }
+    }
+  </script>
+</body>
+</html>
